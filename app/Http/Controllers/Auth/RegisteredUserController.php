@@ -50,7 +50,10 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        $notification = [
+            'message'=>'user logout',
+            'alert-type'=>'success'
+        ];
+        return redirect(RouteServiceProvider::HOME)->with($notification);
     }
 }
